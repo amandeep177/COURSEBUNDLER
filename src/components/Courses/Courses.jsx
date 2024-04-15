@@ -44,12 +44,33 @@ const Course = ({
         <Text
           fontFamily={"body"}
           textTransform={"uppercase"}
-          children={creator} 
+          children={creator}
         />
       </HStack>
 
-<Heading textAlign={"center"} size={"xs"} children={`Lectures - ${lectureCount}`} />
-
+      <Heading
+        textAlign={"center"}
+        size={"xs"}
+        children={`Lectures - ${lectureCount}`}
+        textTransform={"uppercase"}
+      />
+      <Heading
+        size={"xs"}
+        children={`Views - ${views}`}
+        textTransform={"uppercase"}
+      />
+      <Stack direction={["column", "row"]} alignItems={"center"}>
+        <Link to={"/course/${id}"}>
+          <Button colorScheme="yellow"> Watch Now</Button>
+        </Link>
+        <Button
+          variant={"ghost"}
+          colorScheme="yellow"
+          onClick={() => addToPlaylistHandler(id)}
+        >
+          Add To Playlist
+        </Button>
+      </Stack>
     </VStack>
   );
 };
@@ -57,6 +78,10 @@ const Course = ({
 const Courses = () => {
   const [keyword, setkeyword] = useState("");
   const [category, setcategory] = useState("");
+
+  const addToPlaylistHandler = () => {
+    console.log("added to playlist");
+  };
   const categories = [
     "Web development",
     "Artificial Intellegence",
@@ -102,9 +127,12 @@ const Courses = () => {
           title={"Sample"}
           description={"Sample"}
           views={23}
-          imageSrc={"Sample"}
+          imageSrc={
+            "https://cdn.pixabay.com/photo/2020/05/25/17/10/french-bulldog-5219522_1280.jpg"
+          }
           creator={"Sample boy"}
           lectureCount={2}
+          addToPlaylistHandler={addToPlaylistHandler}
         />
       </Stack>
     </Container>
